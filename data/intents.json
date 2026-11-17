@@ -1,0 +1,355 @@
+{
+  "business": "ShopEase",
+  "synonyms": {
+    "mobile": "phone",
+    "cellphone": "phone",
+    "billed": "charged",
+    "parcel": "package",
+    "shipment": "package",
+    "consignment": "package",
+    "product": "item",
+    "thing": "item",
+    "stuff": "item",
+    "goods": "item",
+    "article": "item",
+    "purchase": "order",
+    "broken": "damaged",
+    "cracked": "damaged",
+    "faulty": "damaged",
+    "defective": "damaged",
+    "shattered": "damaged",
+    "malfunctioning": "damaged",
+    "receipt": "invoice",
+    "bill": "invoice",
+    "reimburse": "refund",
+    "reimbursement": "refund",
+    "reimbursed": "refunded",
+    "come": "arrive",
+    "reach": "arrive",
+    "assist": "help",
+    "swap": "exchange",
+    "replace": "exchange",
+    "replacement": "exchange",
+    "sent": "shipped",
+    "dispatch": "ship",
+    "dispatched": "shipped",
+    "helpline": "contact",
+    "lost": "missing",
+    "broke": "damaged",
+    "alter": "modify",
+    "amend": "modify",
+    "overseas": "abroad",
+    "internationally": "abroad",
+    "international": "abroad",
+    "location": "address",
+    "incorrect": "wrong",
+    "gpay": "googlepay",
+    "phonepe": "googlepay",
+    "paytm": "googlepay"
+  },
+  "phrases": [
+    ["sign in", "login"],
+    ["log in", "login"],
+    ["signin", "login"],
+    ["sign up", "signup"],
+    ["get in touch", "contact"],
+    ["two times", "twice"],
+    ["2 times", "twice"],
+    ["money back", "refund"],
+    ["pay on delivery", "cash on delivery"],
+    ["not working", "broken"],
+    ["stopped working", "broken"],
+    ["does not work", "broken"],
+    ["is not turning on", "broken"],
+    ["not turning on", "broken"],
+    ["isn't working", "broken"],
+    ["money returned", "refund"],
+    ["return my money", "refund"],
+    ["customer support", "contact"],
+    ["other countries", "abroad"],
+    ["out of the country", "abroad"]
+  ],
+  "neutral_words": ["last", "week", "weeks", "day", "days", "month", "months", "year", "today", "yesterday", "tomorrow", "ago", "know", "like", "would", "really", "very", "also", "still", "again", "some", "any", "one", "two", "three", "ever", "maybe", "actually", "kindly", "anyone", "there", "well", "okay", "then"],
+  "fallback": {
+      "responses": [
+          "Sorry, I didn't quite get that. Could you rephrase, or pick one of the topics below?",
+          "I'm not sure I understood. Try asking about orders, returns, refunds, shipping or payments."
+      ],
+      "handoff": "I'm still struggling to help with this one. Would you like me to connect you with a human agent? You can also email support@shopease.example or call 1800-000-1234 (Mon-Sat, 9am-6pm).",
+      "suggestions": [
+          "Track my order",
+          "Return policy",
+          "Talk to a human"
+      ]
+  },
+  "intents": [
+    {
+      "tag": "greeting",
+      "keywords": ["hi", "hello", "hey", "howdy", "greetings"],
+      "patterns": ["hi", "hello", "hey", "hey there", "hi there", "good morning", "good afternoon", "good evening", "howdy", "greetings", "hello bot"],
+      "responses": ["Hello{name_comma}! Welcome to ShopEase support. How can I help you today?", "Hi{name_comma}! I'm the ShopEase assistant. Ask me about orders, returns, payments and more."],
+      "suggestions": ["Track my order", "Return an item", "Payment methods"]
+    },
+    {
+      "tag": "goodbye",
+      "keywords": ["bye", "goodbye"],
+      "patterns": ["bye", "goodbye", "see you later", "see you", "talk to you later", "that is all", "that's all i needed", "i am done", "have a nice day", "catch you later", "no that is all"],
+      "responses": ["Goodbye{name_comma}! Come back anytime if you need help.", "Thanks for chatting{name_comma}. Have a great day!"],
+      "suggestions": []
+    },
+    {
+      "tag": "thanks",
+      "keywords": ["thanks", "thank", "cheers", "appreciate"],
+      "patterns": ["thanks", "thank you", "thanks a lot", "thank you so much", "great thanks", "appreciate it", "awesome thank you", "perfect thanks", "cheers", "ok thanks", "thanks for the help", "that was helpful thanks", "thank you for your help", "thanks a ton"],
+      "responses": ["You're welcome{name_comma}! Anything else I can help with?", "Happy to help{name_comma}! Let me know if there's anything else."],
+      "suggestions": ["Track my order", "Contact support"]
+    },
+    {
+      "tag": "bot_identity",
+      "keywords": ["bot", "robot", "chatbot", "ai"],
+      "patterns": ["who are you", "are you a bot", "are you a robot", "are you human", "what is your name", "what are you", "what can you do", "what can you help me with", "help", "i need help", "how can you help", "are you a real person", "are you artificial intelligence", "are you an ai", "are you a machine", "is this an automated chat", "what do you do", "what can you do for me", "hi i need some help"],
+      "responses": ["I'm ShopEase's virtual assistant, an NLP chatbot. I can track and cancel orders, explain returns, refunds, shipping, payments, warranty and offers, or hand you to a human agent."],
+      "suggestions": ["Track my order", "Return policy", "Talk to a human"]
+    },
+    {
+      "tag": "provide_name",
+      "action": "remember_name",
+      "patterns": ["my name is", "call me", "you can call me", "this is", "my name is john"],
+      "responses": ["Nice to meet you, {name}! How can I help?"],
+      "suggestions": ["Track my order", "Return policy"]
+    },
+    {
+      "tag": "business_hours",
+      "keywords": ["hours", "open", "opening", "closing", "weekend", "weekends", "sunday", "saturday"],
+      "patterns": ["what are your business hours", "when are you open", "opening hours", "what time do you close", "are you open on weekends", "support working hours", "when is customer support available", "are you open on sunday", "what time do you open", "are you open today", "timings", "what are your working hours", "support timings"],
+      "responses": ["Our human support team is available Monday to Saturday, 9am-6pm. I'm available 24/7."],
+      "suggestions": ["Contact support", "Talk to a human"]
+    },
+    {
+      "tag": "contact_support",
+      "keywords": ["contact", "call"],
+      "patterns": ["how can i contact support", "customer care phone number", "support email address", "how do i reach you", "contact details", "support phone number", "what is your email", "how to contact customer service", "give me your phone number", "customer service number", "what is your phone number", "customer care number", "email address for support", "contact", "how do i contact you", "how can i get in touch with support", "what is your email id", "what is your email address"],
+      "responses": ["You can reach us at support@shopease.example or 1800-000-1234 (Mon-Sat, 9am-6pm). Or ask me to connect you to a human agent."],
+      "suggestions": ["Talk to a human", "Business hours"]
+    },
+    {
+      "tag": "order_status",
+      "action": "order_lookup",
+      "keywords": ["track", "tracking", "package", "status", "shipped"],
+      "patterns": ["where is my order", "track my order", "order status", "check my order", "where is my package", "has my order shipped", "order ordernum status", "track order ordernum", "when will my order arrive", "my package has not arrived", "package not delivered yet", "what is the status of my order", "i want to track my shipment", "where is order ordernum", "check order ordernum", "where is my parcel", "tracking number", "order tracking", "track my package", "check delivery status", "has my order been dispatched", "when will i receive my order", "is my order on its way", "my tracking link does not work", "tracking link not opening", "track my shipment", "what happened to my order", "when will it arrive", "where is my stuff", "when is my item getting here", "when will my order get here", "is my order out for delivery", "is order ordernum out for delivery", "check on my delivery"],
+      "responses": ["Sure, I can check that. What's your order number? (5-8 digits, e.g. 10001)", "Happy to look it up. Could you share your order number?"],
+      "suggestions": ["Cancel my order", "Shipping times"]
+    },
+    {
+      "tag": "cancel_order",
+      "action": "cancel_order",
+      "weight": 1.3,
+      "keywords": ["cancel", "cancellation"],
+      "patterns": ["cancel my order", "i want to cancel an order", "cancel order ordernum", "stop my order", "i changed my mind cancel my purchase", "please cancel the order", "how do i cancel my order", "cancel my purchase", "i do not want my order anymore", "i want to cancel", "cancel", "i do not want this order anymore", "cancel it", "please cancel order ordernum"],
+      "responses": ["I can help with that. Which order would you like to cancel? Please share the order number."],
+      "suggestions": ["Track my order", "Refund policy"]
+    },
+    {
+      "tag": "shipping_info",
+      "keywords": ["shipping", "ship", "courier", "postage", "delivery", "deliver", "express", "abroad"],
+      "patterns": ["how long does delivery take", "shipping times", "delivery time", "do you ship internationally", "shipping options", "how much is shipping", "shipping charges", "do you offer express delivery", "do you deliver to my country", "delivery charges", "how many days for delivery", "shipping policy", "what is the shipping fee", "how long does shipping take", "how many days will delivery take", "do you offer same day delivery", "is shipping free", "how long will delivery take", "do you deliver on weekends", "do you deliver on public holidays", "is delivery free over a certain amount", "do you deliver on sundays", "what are the delivery options", "do you charge for delivery", "do you send packages abroad", "do you ship to other countries", "shipping overseas"],
+      "responses": ["Standard delivery takes 3-5 business days and express takes 1-2. Shipping is free over ₹499 (otherwise ₹49; express ₹129). International orders take 7-14 business days."],
+      "suggestions": ["Track my order", "Change delivery address"]
+    },
+    {
+      "tag": "refund_policy",
+      "keywords": ["refund", "refunds"],
+      "patterns": ["what is your refund policy", "can i get a refund", "i want my money back", "how do refunds work", "refund conditions", "will i get my money back", "refund for my order", "do you give refunds", "money back guarantee", "refund eligibility", "do you offer refunds", "i want a refund", "refund", "refund policy", "conditions for a refund", "can i get my money back", "what is your refund process", "how does the refund process work", "am i eligible for a refund"],
+      "responses": ["You can request a full refund within 30 days of delivery if the item is unused and in its original packaging. Refunds go back to your original payment method."],
+      "context_variants": {
+        "payment_issue": "Yes. If a payment failed or you were charged twice, the extra amount is refunded automatically to the original payment method within 5-7 business days. If it hasn't arrived after that, email support@shopease.example with the transaction ID."
+      },
+      "suggestions": ["How to return an item", "How long will it take?"]
+    },
+    {
+      "tag": "return_process",
+      "keywords": ["return", "returns", "exchange"],
+      "patterns": ["how do i return an item", "return a product", "start a return", "i want to return my order", "return label", "exchange an item", "how to send back a product", "can i exchange my order", "how to return something i bought", "return instructions", "i want to send this back", "what is your return policy", "return policy", "return", "how to return a product", "how to exchange a product", "i want to return this item", "send my order back"],
+      "responses": ["To return an item: open My Orders, tap Return, choose a reason, then print the label or book a free pickup. Pack the item in its original packaging and hand it over."],
+      "suggestions": ["Refund policy", "How long will it take?"]
+    },
+    {
+      "tag": "payment_methods",
+      "keywords": ["payment", "upi", "paypal", "card", "emi", "cash", "wallet", "installment", "netbanking", "pay", "googlepay"],
+      "patterns": ["what payment methods do you accept", "can i pay with credit card", "do you accept paypal", "do you support upi", "cash on delivery available", "payment options", "do you offer emi", "can i pay by debit card", "which cards do you accept", "net banking payment", "how can i pay", "payment", "payment methods", "what payment options are available", "can i pay in installments", "do you accept cards", "is net banking available", "can i use net banking", "do you support netbanking", "can i use google pay", "is gpay accepted", "can i pay with googlepay"],
+      "responses": ["We accept credit/debit cards, UPI, net banking, PayPal, wallets and cash on delivery. EMI is available on orders above ₹3,000."],
+      "suggestions": ["Any discount codes?", "Track my order"]
+    },
+    {
+      "tag": "change_address",
+      "keywords": ["address", "pincode", "pin"],
+      "patterns": ["change shipping address", "update my delivery address", "wrong address on my order", "i entered the wrong address", "edit my address", "can i change my address", "deliver to a different address", "modify delivery location", "change delivery address", "wrong address", "send it to a different address", "update the address on my order", "change where my order is being sent", "send my order to another address", "i gave the wrong address", "i entered the wrong pincode", "i put the wrong pin code", "update delivery location", "change my delivery location"],
+      "responses": ["You can edit the delivery address from My Orders while the order is still Processing. Once it has shipped, contact support and we'll try to redirect it."],
+      "suggestions": ["Track my order", "Contact support"]
+    },
+    {
+      "tag": "reset_password",
+      "keywords": ["password", "login", "locked"],
+      "patterns": ["i forgot my password", "reset my password", "i cannot log in", "i can not sign in", "change my password", "login problem", "my account is locked", "unable to login", "password reset link not working", "how do i recover my account", "password", "forgot password", "cannot login to my account", "login not working", "unable to login to my account", "cannot sign in", "i cannot get into my account", "cannot access my account"],
+      "responses": ["Tap 'Forgot password' on the login page and enter your email. We'll send a reset link that stays valid for 30 minutes. If your account is locked, contact support."],
+      "suggestions": ["Create an account", "Contact support"]
+    },
+    {
+      "tag": "create_account",
+      "keywords": ["signup"],
+      "patterns": ["how do i create an account", "sign up", "register a new account", "open an account", "how to register", "i want to join", "create a profile", "make an account", "create account", "i want to register", "how to open an account", "i want to open a new account", "how do i open a new account"],
+      "responses": ["Click Sign Up, enter your name, email and a password, and verify the code we email you. It takes under a minute."],
+      "suggestions": ["Reset password", "Any discount codes?"]
+    },
+    {
+      "tag": "promo_codes",
+      "keywords": ["coupon", "promo", "discount", "deal", "sale", "voucher"],
+      "patterns": ["do you have discount codes", "any coupons available", "promo code not working", "current offers", "is there a sale", "how to apply a coupon", "any deals today", "i have a voucher", "where do i enter my promo code", "discounts", "any offers going on", "are there any offers", "coupon", "any discount available"],
+      "responses": ["New customers get 10% off with code WELCOME10. Seasonal offers appear on the home page. Enter codes at checkout under 'Apply coupon'; one code per order."],
+      "suggestions": ["Payment methods", "Create an account"]
+    },
+    {
+      "tag": "warranty",
+      "keywords": ["warranty", "damaged"],
+      "patterns": ["what is the warranty period", "is there a warranty", "how do i claim warranty", "my product is defective", "item stopped working", "product arrived damaged", "warranty claim", "the item i received is broken", "device not working after a week", "received a damaged item", "the product is damaged", "my phone stopped working", "warranty", "my device is not turning on", "my product is not working", "the item stopped working properly", "it does not switch on", "the screen is damaged", "it is damaged", "it broke after a few days", "stopped working after two days"],
+      "responses": ["Electronics carry a 12-month manufacturer warranty and other products 6 months. To claim, open My Orders, choose the item and tap 'Report a problem' with photos."],
+      "suggestions": ["Return policy", "Talk to a human"]
+    },
+    {
+      "tag": "human_agent",
+      "keywords": ["human", "agent", "representative", "manager", "person"],
+      "patterns": ["talk to a human", "speak to an agent", "connect me to a representative", "i need a real person", "live agent please", "human support", "transfer me to a person", "let me speak with someone", "i want to talk to customer care", "escalate this", "human", "agent", "talk to an agent", "i want to talk to a person", "connect me to an agent", "transfer me to customer support", "transfer me to an agent"],
+      "responses": ["Of course. I've flagged this chat for a human agent; someone will join within a few minutes during support hours (Mon-Sat, 9am-6pm). You can also email support@shopease.example."],
+      "suggestions": ["Business hours", "Contact support"]
+    },
+    {
+      "tag": "payment_issue",
+      "label": "I paid but got no confirmation",
+      "keywords": ["deducted", "debited", "declined", "failed", "twice", "double", "transaction", "stuck", "confirmation"],
+      "patterns": ["i made a payment but did not receive confirmation", "payment done but no confirmation", "money was deducted but order not placed", "amount debited but no order confirmation", "my payment failed", "payment failed but money deducted", "transaction failed", "i was charged twice", "double charged for my order", "payment is not going through", "my card was declined", "payment is pending", "i paid but my order is not showing", "i did not get order confirmation email", "resend order confirmation", "no confirmation email after payment", "i already paid but nothing happened", "payment not confirmed", "money got deducted but i did not get any email", "my account was debited but there is no confirmation", "i was charged but did not get an order", "paid already but no confirmation", "payment stuck", "payment pending", "payment went through but no order id", "i did not get my order confirmation", "order confirmation not received", "billed twice for my order"],
+      "responses": ["Sorry about that. Please don't pay again yet. If the money was deducted, the payment is usually confirmed (or automatically refunded) within 2-4 hours. Check your spam folder and My Orders first. If the order still isn't listed after 4 hours, email support@shopease.example with the transaction ID and a screenshot of the debit, and we'll sort it out. Failed payments are refunded to the source within 5-7 business days."],
+      "suggestions": ["Track my order", "Talk to a human", "Contact support"]
+    },
+    {
+      "tag": "refund_status",
+      "label": "Where is my refund",
+      "keywords": ["refund", "refunded"],
+      "patterns": ["where is my refund", "i have not received my refund", "refund status", "when will i get my refund", "refund not credited to my account", "refund is still pending", "i returned the item but got no refund", "track my refund", "my refund has not arrived", "refund not received yet", "i still have not got my refund", "my refund has not come yet", "when will my refund be processed", "how many days will the refund take", "how long does the refund take", "how long will my refund take", "when will my money be refunded", "my refund is stuck", "refund not credited", "my refund is delayed", "refund pending", "when will i get my money back", "has my refund been issued", "has my refund been processed", "i returned the item but nothing happened", "returned my order but no refund yet", "i returned my order and still nothing", "returned it weeks ago and still waiting for the refund", "any update on my refund", "update on my refund", "status update on my refund"],
+      "responses": ["Refunds are issued 5-7 business days after we receive and inspect a return (3-5 business days for cancelled orders) and go back to the original payment method. Banks can add 1-2 days. If it has been more than 10 days, email support@shopease.example with your order number."],
+      "suggestions": ["Refund policy", "Talk to a human"]
+    },
+    {
+      "tag": "delayed_delivery",
+      "label": "My order is delayed",
+      "keywords": ["delayed", "delay", "late", "overdue", "transit", "forever", "missing"],
+      "patterns": ["my order is delayed", "delivery is taking too long", "it has been two weeks and nothing arrived", "why is my order late", "order not delivered on time", "package stuck in transit", "my parcel is late", "delivery date has passed", "still waiting for my order", "my shipment has not moved for days", "order not arrived yet", "why is my delivery so late", "i have not received my order yet", "it has been 10 days and nothing arrived", "my order was supposed to arrive already", "delivery is taking very long", "my delivery is taking forever", "my package is lost", "lost package", "why is it taking so long to arrive", "taking so long to arrive", "my package has not arrived and it is overdue", "still no delivery after two weeks", "no delivery yet", "the courier has not delivered yet", "courier did not deliver my order"],
+      "responses": ["Sorry for the wait. Delays of 1-2 days can happen with weather or high volumes. Check the latest tracking under My Orders. If the parcel is more than 5 days past its estimate, contact support with your order number and we'll chase the carrier or send a replacement."],
+      "suggestions": ["Track my order", "Talk to a human"]
+    },
+    {
+      "tag": "wrong_or_missing_item",
+      "label": "I got the wrong item",
+      "keywords": ["wrong", "missing", "different", "incomplete", "without"],
+      "patterns": ["i received the wrong item", "wrong product delivered", "different item than i ordered", "i got the wrong size", "an item is missing from my package", "my order is incomplete", "one product is missing from my order", "package arrived empty", "i received someone else's order", "the colour is not what i ordered", "you sent me a different product", "this is not what i ordered", "i received a different product", "you sent the wrong thing", "i got the wrong product", "item missing in my package", "received a different size", "this is not the item i ordered", "not the product i ordered", "they sent me the wrong thing", "you forgot to include an item in my package", "some items were not included in the box", "the accessory was not included", "the charger was not in the box", "my order came without the manual", "the item came without accessories", "something was missing in the box", "i got two of the same item instead", "i received duplicates", "received an incorrect item", "the item is incorrect"],
+      "responses": ["Sorry about the mix-up. Open My Orders, choose the order and tap 'Report a problem' with photos of the item and packaging within 7 days. We'll arrange a free pickup and send the right item or a full refund."],
+      "suggestions": ["How to return an item", "Talk to a human"]
+    },
+    {
+      "tag": "invoice",
+      "label": "I need an invoice",
+      "keywords": ["invoice", "bill", "receipt", "gst"],
+      "patterns": ["i need an invoice", "download my receipt", "gst invoice for my order", "bill for my order", "where can i get my invoice", "send me the invoice", "tax invoice", "i need a receipt for my purchase", "i need the invoice", "download my bill"],
+      "responses": ["Open My Orders, select the order and tap 'Download invoice'. It's also emailed once the order ships. For a GST invoice, add your GSTIN at checkout before placing the order."],
+      "suggestions": ["Track my order", "Contact support"]
+    },
+    {
+      "tag": "stock_availability",
+      "label": "Is this item in stock",
+      "keywords": ["stock", "restock", "unavailable"],
+      "patterns": ["is this item in stock", "when will it be back in stock", "product is out of stock", "is this product available", "notify me when available", "will you restock this", "item currently unavailable", "do you have this in my size", "out of stock", "is this item available", "when will this be restocked", "when will you have it again", "when will it be available again"],
+      "responses": ["Stock levels are shown on each product page. For sold-out items tap 'Notify me' and we'll email you as soon as it's back. Restocks usually take 2-3 weeks."],
+      "suggestions": ["Any discount codes?", "Contact support"]
+    },
+    {
+      "tag": "modify_order",
+      "label": "Change my order",
+      "keywords": ["modify", "edit"],
+      "patterns": ["i want to change my order", "add an item to my order", "change the size of my order", "modify my order", "can i edit my order", "i ordered the wrong colour", "swap an item in my order", "change the quantity on my order", "can i change my order", "add another item to my order"],
+      "responses": ["Orders can only be changed while they're still Processing. The quickest way is to cancel the order and place a new one. Tell me 'cancel my order' and I'll check its status for you."],
+      "suggestions": ["Cancel my order", "Track my order"]
+    },
+    {
+      "tag": "account_update",
+      "label": "Update my account details",
+      "keywords": ["unsubscribe", "profile", "delete"],
+      "patterns": ["update my email address", "change my phone number", "delete my account", "update my profile", "unsubscribe from emails", "stop promotional emails", "i want to change my account details", "close my account", "remove my saved card", "change my email id", "change my email address", "update my phone number", "stop sending me emails", "stop the marketing emails", "i keep getting too many emails"],
+      "responses": ["Go to Account > Profile to update your email, phone number or saved cards, and Account > Preferences to manage emails. To delete your account, email support@shopease.example from your registered address."],
+      "suggestions": ["Reset password", "Contact support"]
+    },
+    {
+      "tag": "gift_cards",
+      "label": "Gift cards",
+      "keywords": ["gift"],
+      "patterns": ["do you sell gift cards", "how do i redeem a gift card", "check my gift card balance", "gift voucher", "buy a gift card for a friend", "gift card not working", "gift card", "how do i redeem a gift voucher"],
+      "responses": ["Gift cards from ₹500 to ₹10,000 are on the Gift Cards page and arrive by email instantly. To redeem one, enter the code at checkout under 'Apply coupon'. Balances carry over and cards are valid for 12 months."],
+      "suggestions": ["Payment methods", "Any discount codes?"]
+    },
+    {
+      "tag": "followup_duration",
+      "cues": ["how long", "how many days", "how soon", "how much time", "time does it take"],
+      "patterns": ["how long will it take", "how long does that take", "how many days", "when will that happen", "how soon", "how long is that", "how much time does it take", "when will i get it", "what is the timeline", "how long"],
+      "responses": ["Which process do you mean? For example delivery, refunds or returns. Ask me about one and then follow up with 'how long?'."],
+      "contextual_responses": {
+        "refund_policy": "Refunds reach your original payment method 5-7 business days after we receive and inspect the returned item.",
+        "return_process": "Pickup is usually within 2 days of booking. After the item reaches our warehouse, inspection takes 2 business days and then the refund is issued.",
+        "shipping_info": "Standard delivery: 3-5 business days. Express: 1-2 business days. International: 7-14 business days.",
+        "order_status": "Standard delivery takes 3-5 business days from dispatch. The ETA I gave above is the latest estimate.",
+        "cancel_order": "Approved cancellations are instant and the refund appears in 3-5 business days.",
+        "payment_methods": "Cards, UPI and net banking payments are confirmed instantly. Cash on delivery is paid when the parcel arrives.",
+        "warranty": "Warranty claims are reviewed within 3 business days; repair or replacement then takes 7-10 days.",
+        "reset_password": "The reset email usually arrives within 2 minutes, and the link is valid for 30 minutes.",
+        "change_address": "Address changes on a Processing order apply instantly. For shipped orders, redirects take up to 24 hours to confirm.",
+        "refund_status": "Refunds take 5-7 business days after we inspect a return (3-5 for cancelled orders). Your bank may add 1-2 days.",
+        "payment_issue": "Payments stuck in 'pending' usually resolve within 2-4 hours. Failed payments are refunded to the source within 5-7 business days.",
+        "delayed_delivery": "Most delays clear within 1-2 days. If you're more than 5 days past the estimate, contact support and we'll chase the carrier.",
+        "wrong_or_missing_item": "Report the problem within 7 days. Pickup is arranged within 2 days, and the replacement or refund follows once we receive the item.",
+        "invoice": "Invoices are available as soon as the order ships and are also emailed to you."
+      },
+      "suggestions": ["Track my order", "Refund policy"]
+    },
+    {
+      "tag": "followup_cost",
+      "cues": ["free", "cost", "charge", "charges", "fee", "price", "how much", "extra"],
+      "patterns": ["is it free", "how much does it cost", "are there any charges", "do i have to pay for it", "is there a fee", "what is the price for that", "any extra charges", "will it cost me anything", "is that free of charge"],
+      "responses": ["What would you like the cost of? For example shipping, returns or warranty. Ask about one first and then follow up with 'is it free?'."],
+      "contextual_responses": {
+        "refund_policy": "Refunds are free. For change-of-mind returns, a flat ₹50 pickup fee is deducted from the refund.",
+        "return_process": "Returns of damaged or wrong items are free. For change-of-mind returns we deduct a flat ₹50 pickup fee.",
+        "shipping_info": "Standard shipping is free over ₹499, otherwise ₹49. Express is ₹129 and international is calculated at checkout.",
+        "order_status": "Tracking is free. Delivery charges were already included at checkout.",
+        "cancel_order": "Cancelling an order is free. There is no cancellation fee.",
+        "payment_methods": "There are no fees on cards, UPI or net banking. Cash on delivery has a ₹30 handling fee.",
+        "warranty": "Warranty repair or replacement is free. You only pay for damage that isn't covered, such as accidents or misuse.",
+        "promo_codes": "Coupons are free to use. Just enter the code at checkout."
+      },
+      "suggestions": ["Shipping times", "Payment methods"]
+    },
+    {
+      "tag": "followup_more",
+      "cues": ["tell me more", "more details", "more about", "elaborate", "explain", "details"],
+      "patterns": ["tell me more", "can you explain more", "more details please", "what else", "explain that", "can you elaborate", "go on", "i need more information", "what does that mean"],
+      "responses": ["Happy to elaborate. Which topic would you like more detail on, such as returns, refunds or shipping?"],
+      "contextual_responses": {
+        "refund_policy": "Details: items must be unused and returned within 30 days of delivery in original packaging. Digital goods and gift cards are non-refundable. Refunds go to the original payment method.",
+        "return_process": "Steps: 1) My Orders > Return, 2) pick a reason, 3) print the label or book a pickup, 4) hand over the packed item. You'll get email updates at each stage.",
+        "shipping_info": "We ship to 25+ countries. International parcels may incur customs duties paid by the buyer, and you'll get a tracking link by email once the parcel is dispatched.",
+        "order_status": "You'll receive SMS and email updates when the order ships and when it is out for delivery. You can also see live tracking under My Orders.",
+        "cancel_order": "Orders can be cancelled while they're still Processing. Once shipped, you can refuse delivery or use the return process instead.",
+        "payment_methods": "All payments are encrypted. We never store full card numbers. Saved cards are tokenised by the payment provider.",
+        "warranty": "Keep your invoice. It is required for claims. Accidental damage, water damage and unauthorised repairs are not covered.",
+        "promo_codes": "WELCOME10 gives 10% off your first order (max ₹300). Codes can't be combined, and sale items may be excluded."
+      },
+      "suggestions": ["Talk to a human"]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+# Optional: semantic matching with a Hugging Face model (CHATBOT_BACKEND=transformers)
+-r requirements.txt
+torch>=2.1
+transformers>=4.40

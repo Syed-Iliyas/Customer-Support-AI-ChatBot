@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chatbot Logs</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="admin">
+    <h1>Interaction logs</h1>
+    <p style="color:var(--muted);margin:0">Every user message, bot reply, detected intent and confidence.</p>
+    <div id="auth" class="tools" hidden>
+      <input id="token" type="password" placeholder="Admin token" aria-label="Admin token">
+      <button class="ghost" id="login" type="button">Open</button>
+      <span id="auth-msg" style="color:var(--warn)"></span>
+    </div>
+    <div id="content" hidden>
+      <div class="cards" id="cards"></div>
+      <div class="grid2">
+        <div class="panel"><h2>Top intents</h2><div id="intents"></div></div>
+        <div class="panel"><h2>Unanswered questions (fallbacks)</h2><div id="unanswered"></div></div>
+      </div>
+      <div class="tools">
+        <input id="session" placeholder="Filter by session id">
+        <button class="ghost" id="refresh" type="button">Refresh</button>
+        <a id="export" href="#">Export CSV</a>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Time (UTC)</th><th>Session</th><th>User</th><th>Bot</th><th>Intent</th><th>Conf.</th><th>ms</th><th>Rating</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+  <script>
+    const $ = (id) => document.getElementById(id);
+    let token = new URLSearchParams(location.search).get("token") || sessionStorage.getItem("admin_token") || "";
+    history.replaceState(null, "", location.pathname); // keep the token out of the address bar/history
+
+    const api = (path) => fetch(path, { headers: { "X-Admin-Token": token } });
+    const el = (tag, text, cls) => { const e = document.createElement(tag); if (text !== undefined) e.textContent = text; if (cls) e.className = cls; return e; };
+
+    async function load() {
+      const [s, l] = await Promise.all([
+        api("/api/admin/stats"),
+        api("/api/admin/logs?limit=200" + ($("session").value ? "&session_id=" + encodeURIComponent($("session").value.trim()) : "")),
+      ]);
+      if (s.status === 401) { $("auth").hidden = false; $("content").hidden = true; if (token) $("auth-msg").textContent = "Invalid token"; return; }
+      sessionStorage.setItem("admin_token", token);
+      $("auth").hidden = true; $("content").hidden = false;
+      const st = await s.json(), logs = await l.json();
+
+      const cards = [["Messages", st.total_messages], ["Sessions", st.sessions], ["Fallback rate", (st.fallback_rate * 100).toFixed(1) + "%"],
+                     ["Helpful / not", st.thumbs_up + " / " + st.thumbs_down], ["Avg latency", st.avg_latency_ms + " ms"]];
+      $("cards").replaceChildren(...cards.map(([k, v]) => { const c = el("div", undefined, "card"); c.append(el("b", v), el("span", k)); return c; }));
+
+      const max = Math.max(1, ...st.top_intents.map((i) => i.count));
+      $("intents").replaceChildren(...(st.top_intents.length ? st.top_intents.map((i) => {
+        const r = el("div", undefined, "bar"), b = el("div"); b.style.width = (i.count / max * 100) + "%";
+        r.append(el("span", i.intent), b, el("span", i.count)); return r; }) : [el("div", "No data yet", "empty")]));
+      $("unanswered").replaceChildren(...(st.unanswered.length ? st.unanswered.map((u) => el("div", u.message + "  (×" + u.count + ")")) : [el("div", "None. Nice.", "empty")]));
+
+      $("rows").replaceChildren(...logs.map((r) => {
+        const tr = el("tr");
+        const intent = el("td"); intent.append(el("span", r.intent || "fallback", "tag" + (r.is_fallback ? " fb" : "")));
+        tr.append(el("td", r.created_at.replace("T", " ").replace("+00:00", "")), el("td", r.session_id.slice(0, 8)),
+                  el("td", r.user_message, "msg-col"), el("td", r.bot_response, "msg-col"), intent,
+                  el("td", (r.confidence ?? 0).toFixed(2)), el("td", Math.round(r.latency_ms || 0)),
+                  el("td", r.feedback === 1 ? "👍" : r.feedback === -1 ? "👎" : ""));
+        return tr;
+      }));
+    }
+
+    $("login").onclick = () => { token = $("token").value; load(); };
+    $("refresh").onclick = load;
+    $("export").onclick = async (e) => {
+      e.preventDefault();
+      const res = await api("/api/admin/export.csv"); if (!res.ok) return;
+      const url = URL.createObjectURL(await res.blob());
+      const a = el("a"); a.href = url; a.download = "chat_logs.csv"; a.click(); URL.revokeObjectURL(url);
+    };
+    load();
+  </script>
+</body>
+</html>

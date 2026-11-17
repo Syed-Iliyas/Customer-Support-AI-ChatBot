@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ShopEase Support Assistant</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="shell">
+    <header class="top">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">S</span>
+        <div>
+          <h1>ShopEase Assistant</h1>
+          <p><span class="dot"></span>Online &middot; replies instantly</p>
+        </div>
+      </div>
+      <button id="new-chat" class="ghost" type="button">New chat</button>
+    </header>
+
+    <section id="messages" class="messages" aria-live="polite"></section>
+    <div id="chips" class="chips"></div>
+
+    <form id="composer" class="composer" autocomplete="off">
+      <input id="input" type="text" maxlength="500" placeholder="Ask about orders, returns, payments&hellip;" aria-label="Message" autofocus>
+      <button type="submit" aria-label="Send">Send</button>
+    </form>
+    <p class="hint">Demo store data: try order numbers 10001&ndash;10005.</p>
+  </main>
+  <script src="{{ url_for('static', filename='chat.js') }}"></script>
+</body>
+</html>
