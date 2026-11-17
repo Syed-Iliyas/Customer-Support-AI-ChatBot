@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AI-Powered Customer Support Chatbot
 
 An NLP chatbot for customer support / FAQs, demonstrated on a fictional store ("ShopEase").
@@ -122,3 +123,7 @@ data/intents.json   intents, example phrases, responses
 templates/, static/ chat UI and admin dashboard
 tests/test_bot.py   53 tests: NLP, topic tracking, off-topic handling, accuracy sets, context, actions, logging, API
 ```
+=======
+# Customer-Support-AI-ChatBot
+NLP customer-support chatbot in Python with contextual replies, order lookup/cancel, typo handling and SQLite interaction logs. Flask web UI plus an admin dashboard.
+>>>>>>> 15bb7a1106c69628f832991b82e9e1d53d2f1cfc
